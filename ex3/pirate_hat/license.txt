@@ -1,0 +1,11 @@
+Model Information:
+* title:	Pirate hat
+* source:	https://sketchfab.com/3d-models/pirate-hat-84b496f5860340eca3cc1d63985aa524
+* author:	ReversedG (https://sketchfab.com/ReversedG)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Pirate hat" (https://sketchfab.com/3d-models/pirate-hat-84b496f5860340eca3cc1d63985aa524) by ReversedG (https://sketchfab.com/ReversedG) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
