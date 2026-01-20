@@ -1,54 +1,79 @@
+<!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+
     <script>
-        AFRAME.registerComponent("mylink", {
-        init: function() {  
-         this.el.addEventListener("click", (e) => {              
-            window.location = this.data.href;      
-           })
+      AFRAME.registerComponent("mylink", {
+        schema: {
+          href: { type: "string" }
+        },
+        init: function () {
+          this.el.addEventListener("click", () => {
+            window.location.href = this.data.href;
+          });
         }
-      })
+      });
     </script>
-
-
   </head>
+
   <body>
-  <a-scene cursor="rayOrigin: mouse">
-    <a-assets>
-      <img id="imgSortida" src="entragroc.png" >
-      <img id="imgFantasma" src="fantasma.png" >
-      <img id="imgCasa" src="casadelsusto.jpg" >
-      <a-asset-item id="dracula" src="dracula/scene.glb"></a-asset-item>
-    </a-assets>
-   
-    <a-entity camera look-controls wasd-controls="false">
-    <!-- fuseTimeout = el temps que triga en fer click des de que es posiciona sobre un objecte-->
-     <a-entity cursor="fuse: true; fuseTimeout: 2000"
-           position="0 0 -1"
-           geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
-           material="color: red; shader: flat"
-           animation="property: components.material.material.color;
-                 type: color;
-                 to: white;
-                 dur: 1000;
-                 dir: alternate;
-                 loop: true">
-     </a-entity>
-    </a-entity>
+    <a-scene cursor="rayOrigin: mouse">
 
+      <a-assets>
+        <img id="imgSortida" src="entragroc.png">
+        <img id="imgFantasma" src="fantasma.png">
+        <img id="imgCasa" src="casadelsusto.jpg">
+        <a-asset-item id="dracula" src="dracula/scene.glb"></a-asset-item>
+      </a-assets>
 
-   
-   
-     <a-sky src="#imgCasa"></a-sky>
+      <!-- CÁMARA (MISMA POSICIÓN) -->
+      <a-entity camera look-controls wasd-controls="false">
+        <a-entity
+          cursor="fuse: true; fuseTimeout: 2000"
+          raycaster="objects: .clickable"
+          position="0 0 -1"
+          geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+          material="color: red; shader: flat"
+          animation="property: material.color;
+                     type: color;
+                     to: white;
+                     dur: 1000;
+                     dir: alternate;
+                     loop: true">
+        </a-entity>
+      </a-entity>
 
-<a-sphere position="0 0 0" radius="1" src="#imgFantasma"></a-sphere>
+      <a-sky src="#imgCasa"></a-sky>
 
-<a-entity gltf-model="#dracula" position="-447 -20 93" scale="10 10 10" rotation="0 -99 0"
-          animation="property: position; dur: 10000; from:-447 93; to:0 0; dir: alternate; loop:true">
-</a-entity>
+      <a-sphere position="10 10 -10" radius="1" src="#imgFantasma"></a-sphere>
+      
+      <!-- DRACULA CLICABLE -->
+      <a-entity
+        class="clickable"
+        mylink="href: https://darkziack.github.io/web3d/ex1/ex1.html"
+        gltf-model="#dracula"
+        position="-0 0 0"
+        scale="10 10 10"
+        rotation="0 -99 0"
+        animation="property: position;
+                   dur: 10000;
+                   from:-447 -20 93;
+                   to:0 -20 0;
+                   dir: alternate;
+                   loop:true">
+      </a-entity>
 
-      <a-plane position="14 0 -3" src="#imgSortida" rotation="0 99 0"  transparent="true" mylink="href: https://pranx.com/hacker/typer/;"></a-plane>
+      <a-plane
+        class="clickable"
+        position="14 0 -3.01"
+        rotation="0 0 0"
+        src="#imgSortida"
+        transparent="true"
+        mylink="href: https://darkziack.github.io/web3d/">
+      </a-plane>
+
     </a-scene>
   </body>
 </html>

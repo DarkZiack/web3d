@@ -1,16 +1,47 @@
 <html>
   <head>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script>
+      AFRAME.registerComponent("mylink", {
+        schema: {
+          href: { type: "string" }
+        },
+        init: function () {
+          this.el.addEventListener("click", () => {
+            window.location.href = this.data.href;
+          });
+        }
+      });
+    </script>
   </head>
   <body>
-    <a-scene>
+    <a-scene cursor="rayOrigin: mouse">
         <a-assets>
             <img id="nadal" src="xmas.jpg">
         </a-assets>
+
+        <!-- Cámara con cursor -->
+        <a-entity camera look-controls>
+            <a-entity 
+              cursor="fuse: true; fuseTimeout: 2000"
+              raycaster="objects: .clickable"
+              position="0 0 -1"
+              geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+              material="color: red; shader: flat">
+            </a-entity>
+        </a-entity>
+
         <a-sky color="#001"></a-sky>
-        <a-sphere position="0 2 -5" radius="1" src="#nadal"
-           animation="property: rotation; dur: 10000;
-           to: 0 360 0; loop: true"></a-sphere>  
+
+        <!-- Esfera clicable -->
+        <a-sphere 
+          class="clickable"
+          position="0 2 -5" 
+          radius="1" 
+          src="#nadal"
+          mylink="href: https://darkziack.github.io/web3d/ex5/ex5.html"
+          animation="property: rotation; dur: 10000; to: 0 360 0; loop: true">
+        </a-sphere>  
     </a-scene>
   </body>
 </html>
